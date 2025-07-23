@@ -1,0 +1,327 @@
+/* # src/app/globals.css (Updated for Tailwind v4) */
+
+@import "tailwindcss";
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+@layer components {
+  .container {
+    @apply max-w-7xl;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-gray-100;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-gray-400 rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-gray-500;
+  }
+}
+
+@layer utilities {
+  .text-shadow {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .text-shadow-lg {
+    text-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+}
+
+/* Custom Color Classes - Complete Set */
+@layer utilities {
+  /* Primary Colors */
+  .bg-primary-50 {
+    background-color: #eff6ff;
+  }
+  .bg-primary-100 {
+    background-color: #dbeafe;
+  }
+  .bg-primary-200 {
+    background-color: #bfdbfe;
+  }
+  .bg-primary-300 {
+    background-color: #93c5fd;
+  }
+  .bg-primary-400 {
+    background-color: #60a5fa;
+  }
+  .bg-primary-500 {
+    background-color: #3b82f6;
+  }
+  .bg-primary-600 {
+    background-color: #2563eb;
+  }
+  .bg-primary-700 {
+    background-color: #1d4ed8;
+  }
+  .bg-primary-800 {
+    background-color: #1e40af;
+  }
+  .bg-primary-900 {
+    background-color: #1e3a8a;
+  }
+
+  .text-primary-50 {
+    color: #eff6ff;
+  }
+  .text-primary-100 {
+    color: #dbeafe;
+  }
+  .text-primary-200 {
+    color: #bfdbfe;
+  }
+  .text-primary-300 {
+    color: #93c5fd;
+  }
+  .text-primary-400 {
+    color: #60a5fa;
+  }
+  .text-primary-500 {
+    color: #3b82f6;
+  }
+  .text-primary-600 {
+    color: #2563eb;
+  }
+  .text-primary-700 {
+    color: #1d4ed8;
+  }
+  .text-primary-800 {
+    color: #1e40af;
+  }
+  .text-primary-900 {
+    color: #1e3a8a;
+  }
+
+  /* Accent Colors */
+  .bg-accent-50 {
+    background-color: #fffbeb;
+  }
+  .bg-accent-100 {
+    background-color: #fef3c7;
+  }
+  .bg-accent-200 {
+    background-color: #fde68a;
+  }
+  .bg-accent-300 {
+    background-color: #fcd34d;
+  }
+  .bg-accent-400 {
+    background-color: #fbbf24;
+  }
+  .bg-accent-500 {
+    background-color: #f59e0b;
+  }
+  .bg-accent-600 {
+    background-color: #d97706;
+  }
+  .bg-accent-700 {
+    background-color: #b45309;
+  }
+  .bg-accent-800 {
+    background-color: #92400e;
+  }
+  .bg-accent-900 {
+    background-color: #78350f;
+  }
+
+  .text-accent-50 {
+    color: #fffbeb;
+  }
+  .text-accent-100 {
+    color: #fef3c7;
+  }
+  .text-accent-200 {
+    color: #fde68a;
+  }
+  .text-accent-300 {
+    color: #fcd34d;
+  }
+  .text-accent-400 {
+    color: #fbbf24;
+  }
+  .text-accent-500 {
+    color: #f59e0b;
+  }
+  .text-accent-600 {
+    color: #d97706;
+  }
+  .text-accent-700 {
+    color: #b45309;
+  }
+  .text-accent-800 {
+    color: #92400e;
+  }
+  .text-accent-900 {
+    color: #78350f;
+  }
+
+  /* Hover States */
+  .hover\:bg-primary-500:hover {
+    background-color: #3b82f6;
+  }
+  .hover\:bg-primary-600:hover {
+    background-color: #2563eb;
+  }
+  .hover\:bg-primary-700:hover {
+    background-color: #1d4ed8;
+  }
+  .hover\:bg-primary-800:hover {
+    background-color: #1e40af;
+  }
+
+  .hover\:bg-accent-500:hover {
+    background-color: #f59e0b;
+  }
+  .hover\:bg-accent-600:hover {
+    background-color: #d97706;
+  }
+  .hover\:bg-accent-700:hover {
+    background-color: #b45309;
+  }
+
+  .hover\:text-primary-500:hover {
+    color: #3b82f6;
+  }
+  .hover\:text-primary-600:hover {
+    color: #2563eb;
+  }
+  .hover\:text-primary-700:hover {
+    color: #1d4ed8;
+  }
+
+  .hover\:text-accent-500:hover {
+    color: #f59e0b;
+  }
+  .hover\:text-accent-600:hover {
+    color: #d97706;
+  }
+
+  .bg-primary-600 {
+    background-color: #dc2626;
+  } /* Red instead of blue */
+  .bg-primary-700 {
+    background-color: #b91c1c;
+  }
+  .bg-primary-800 {
+    background-color: #991b1b;
+  }
+  .text-primary-600 {
+    color: #dc2626;
+  }
+  .text-primary-700 {
+    color: #b91c1c;
+  }
+
+  .hover\:bg-primary-600:hover {
+    background-color: #dc2626;
+  }
+  .hover\:bg-primary-700:hover {
+    background-color: #b91c1c;
+  }
+  .hover\:bg-primary-800:hover {
+    background-color: #991b1b;
+  }
+
+  /* Red gradients */
+  .bg-gradient-to-br.from-primary-600.via-primary-700.to-primary-800 {
+    background: linear-gradient(to bottom right, #dc2626, #b91c1c, #991b1b);
+  }
+
+  /* Gradients */
+  .bg-gradient-to-r.from-primary-600.to-primary-800 {
+    background: linear-gradient(to right, #2563eb, #1e40af);
+  }
+  .bg-gradient-to-br.from-primary-600.via-primary-700.to-primary-800 {
+    background: linear-gradient(to bottom right, #dc2626, #b91c1c, #991b1b);
+  }
+  .bg-gradient-to-br.from-primary-400.to-primary-600 {
+    background: linear-gradient(to bottom right, #60a5fa, #2563eb);
+  }
+  .bg-gradient-to-br.from-primary-200.to-primary-50 {
+    background: linear-gradient(to bottom right, #bfdbfe, #eff6ff);
+  }
+
+  /* Focus states */
+  .focus\:ring-primary-500:focus {
+    --tw-ring-color: #3b82f6;
+  }
+  .focus\:ring-accent-500:focus {
+    --tw-ring-color: #f59e0b;
+  }
+}
+
+.bg-pattern {
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+/* Improve form elements accessibility */
+input:focus,
+select:focus,
+textarea:focus {
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+/* Custom animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+/* WhatsApp button pulse animation */
+@keyframes pulse-green {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7);
+  }
+  50% {
+    box-shadow: 0 0 0 10px rgba(34, 197, 94, 0);
+  }
+}
+
+.whatsapp-pulse {
+  animation: pulse-green 2s infinite;
+}
+
+/* Loading states */
+.loading-shimmer {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
