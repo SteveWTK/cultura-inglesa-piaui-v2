@@ -44,8 +44,8 @@ const galleryImages: GalleryImage[] = [
   {
     id: "5",
     src: "/images/gallery/gallery-3.jpeg",
-    alt: "Certificações",
-    caption: "Alunos recebendo certificações",
+    alt: "",
+    caption: "",
     height: "medium",
   },
   {
@@ -65,8 +65,8 @@ const galleryImages: GalleryImage[] = [
   {
     id: "8",
     src: "/images/gallery/gallery-4.jpeg",
-    alt: "Preparação Cambridge",
-    caption: "Preparação para exames Cambridge",
+    alt: "",
+    caption: "",
     height: "tall",
   },
 ];
