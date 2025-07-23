@@ -41,7 +41,7 @@ export const InstagramEmbed: React.FC<InstagramEmbedProps> = ({
         className="w-full h-full border-0 rounded-2xl"
         frameBorder="0"
         scrolling="no"
-        allowTransparency={true}
+        // allowTransparency={true}
         allow="encrypted-media"
         loading="lazy"
       />

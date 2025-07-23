@@ -1,8 +1,8 @@
 "use client";
 
 import React, { useState } from "react";
-import { X, Star, MessageCircle, Heart, Instagram } from "lucide-react";
-import { InstagramEmbed } from "./InstagramEmbed";
+import { Star, MessageCircle, Heart } from "lucide-react";
+import { InstagramCard } from "./InstagramCard";
 
 interface TestimonialItem {
   id: string;
@@ -10,14 +10,15 @@ interface TestimonialItem {
   name: string;
   role: string;
   content: string;
-  src: string; // Instagram URL or review screenshot
+  src: string;
+  thumbnail?: string; // For Instagram cards
   rating?: number;
   platform?: string;
   color: string;
 }
 
 const testimonialData: TestimonialItem[] = [
-  // Instagram video testimonials
+  // Instagram video testimonials with your actual URLs
   {
     id: "instagram-1",
     type: "instagram",
@@ -25,7 +26,8 @@ const testimonialData: TestimonialItem[] = [
     role: "Aluna",
     content:
       "Foi uma experiência muito forte na minha vida que me impactou muito!",
-    src: "https://www.instagram.com/reel/DGddXlUO1Q1/?utm_source=ig_web_copy_link", // Replace with actual Instagram URL
+    src: "https://www.instagram.com/reel/DGddXlUO1Q1/?utm_source=ig_web_copy_link",
+    thumbnail: "/images/testimonials/maria-thumbnail.jpg", // Optional screenshot
     color: "from-pink-400 to-rose-500",
   },
   {
@@ -34,7 +36,8 @@ const testimonialData: TestimonialItem[] = [
     name: "Taynan",
     role: "Aluna",
     content: "",
-    src: "https://www.instagram.com/reel/C-VUas0gX75/?igsh=b2t1czFjaGQweWNn", // Replace with actual Instagram URL
+    src: "https://www.instagram.com/reel/C-VUas0gX75/?igsh=b2t1czFjaGQweWNn",
+    thumbnail: "/images/testimonials/joao-thumbnail.jpg",
     color: "from-orange-400 to-red-500",
   },
   {
@@ -43,11 +46,12 @@ const testimonialData: TestimonialItem[] = [
     name: "Emília, mãe da Letícia,",
     role: "Mãe de aluna",
     content: "",
-    src: "https://www.instagram.com/reel/C-Ats4dOjku/?utm_source=ig_web_copy_link", // Replace with actual Instagram URL
+    src: "https://www.instagram.com/reel/C-Ats4dOjku/?utm_source=ig_web_copy_link",
+    thumbnail: "/images/testimonials/ana-thumbnail.jpg",
     color: "from-purple-400 to-pink-500",
   },
 
-  // Review screenshots (keep small images)
+  // Review screenshots (same as before)
   {
     id: "review-1",
     type: "image",
@@ -86,16 +90,19 @@ const testimonialData: TestimonialItem[] = [
 ];
 
 export const Testimonials: React.FC = () => {
-  const [selectedMedia, setSelectedMedia] = useState<TestimonialItem | null>(
+  const [selectedImage, setSelectedImage] = useState<TestimonialItem | null>(
     null
   );
 
-  const openModal = (testimonial: TestimonialItem) => {
-    setSelectedMedia(testimonial);
+  const openImageModal = (testimonial: TestimonialItem) => {
+    if (testimonial.type === "image") {
+      setSelectedImage(testimonial);
+    }
+    // Instagram videos will open directly in new tab
   };
 
-  const closeModal = () => {
-    setSelectedMedia(null);
+  const closeImageModal = () => {
+    setSelectedImage(null);
   };
 
   return (
@@ -128,51 +135,23 @@ export const Testimonials: React.FC = () => {
                     : index % 3 === 1
                     ? "lg:mt-8"
                     : "lg:mt-4"
-                } transform hover:scale-105 transition-all duration-300`}
+                }`}
               >
                 {testimonial.type === "instagram" ? (
-                  /* 📱 INSTAGRAM VIDEO CARD */
-                  <div className="group">
-                    <div
-                      className={`relative bg-gradient-to-br ${testimonial.color} rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 p-1 cursor-pointer`}
-                      onClick={() => openModal(testimonial)}
-                    >
-                      {/* Instagram Embed Container */}
-                      <div className="bg-white rounded-2xl overflow-hidden h-80 md:h-96 relative">
-                        <InstagramEmbed
-                          url={testimonial.src}
-                          className="w-full h-full"
-                        />
-
-                        {/* Overlay with testimonial info */}
-                        <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent text-white p-4">
-                          <h3 className="font-bold text-lg">
-                            {testimonial.name}
-                          </h3>
-                          <p className="text-sm opacity-90">
-                            {testimonial.role}
-                          </p>
-                        </div>
-
-                        {/* Instagram badge */}
-                        <div className="absolute top-3 right-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white p-2 rounded-full">
-                          <Instagram className="h-4 w-4" />
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Quote below video */}
-                    <div className="mt-4 text-center">
-                      <p className="text-gray-700 italic">
-                        &quot;{testimonial.content}&quot;
-                      </p>
-                    </div>
-                  </div>
+                  /* Instagram Card */
+                  <InstagramCard
+                    name={testimonial.name}
+                    role={testimonial.role}
+                    content={testimonial.content}
+                    instagramUrl={testimonial.src}
+                    color={testimonial.color}
+                    thumbnail={testimonial.thumbnail}
+                  />
                 ) : (
-                  /* 📝 REVIEW CARD - Same as before */
+                  /* Review Card - Same as before */
                   <div
-                    className="group cursor-pointer"
-                    onClick={() => openModal(testimonial)}
+                    className="group cursor-pointer transform hover:scale-105 transition-all duration-300"
+                    onClick={() => openImageModal(testimonial)}
                   >
                     <div
                       className={`relative bg-gradient-to-br ${testimonial.color} rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 p-1`}
@@ -184,6 +163,8 @@ export const Testimonials: React.FC = () => {
                             className={`px-3 py-1 rounded-full text-xs font-semibold ${
                               testimonial.platform === "Google"
                                 ? "bg-blue-100 text-blue-700"
+                                : testimonial.platform === "Facebook"
+                                ? "bg-blue-100 text-blue-800"
                                 : "bg-gray-100 text-gray-700"
                             }`}
                           >
@@ -226,6 +207,11 @@ export const Testimonials: React.FC = () => {
                             </div>
                           </div>
                         </div>
+
+                        {/* Review badge */}
+                        <div className="absolute top-4 right-4 bg-green-500 text-white p-2 rounded-full">
+                          <MessageCircle className="h-4 w-4" />
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -242,6 +228,7 @@ export const Testimonials: React.FC = () => {
               <Heart className="absolute top-4 left-4 h-8 w-8" />
               <Heart className="absolute top-8 right-8 h-6 w-6" />
               <Heart className="absolute bottom-6 left-8 h-7 w-7" />
+              <Heart className="absolute bottom-4 right-6 h-5 w-5" />
             </div>
 
             <div className="relative z-10">
@@ -250,6 +237,7 @@ export const Testimonials: React.FC = () => {
               </h3>
               <p className="text-xl text-red-100 mb-8 max-w-2xl mx-auto">
                 Junte-se a centenas de alunos que já transformaram suas vidas
+                com a Cultura Inglesa Teresina
               </p>
 
               <button
@@ -266,43 +254,51 @@ export const Testimonials: React.FC = () => {
         </div>
       </div>
 
-      {/* Modal for larger view */}
-      {selectedMedia && (
+      {/* Image Modal (for reviews only) */}
+      {selectedImage && (
         <div className="fixed inset-0 bg-black bg-opacity-95 z-50 flex items-center justify-center p-4">
           <div className="relative w-full max-w-lg max-h-[85vh] flex flex-col">
             <button
-              onClick={closeModal}
+              onClick={closeImageModal}
               className="absolute -top-10 right-2 text-white hover:text-red-400 transition-colors z-30 bg-black/50 rounded-full p-2"
             >
-              <X className="h-6 w-6" />
+              ✕
             </button>
 
             <div className="relative bg-white rounded-2xl overflow-hidden shadow-2xl">
-              {selectedMedia.type === "instagram" ? (
-                <div className="h-96">
-                  <InstagramEmbed
-                    url={selectedMedia.src}
-                    className="w-full h-full"
-                  />
-                </div>
-              ) : (
-                <div className="p-8">
-                  <img
-                    src={selectedMedia.src}
-                    alt={`Review de ${selectedMedia.name}`}
-                    className="w-full max-h-96 object-contain mx-auto rounded-lg"
-                  />
-                </div>
-              )}
+              <div className="p-8">
+                <img
+                  src={selectedImage.src}
+                  alt={`Review de ${selectedImage.name}`}
+                  className="w-full max-h-96 object-contain mx-auto rounded-lg"
+                />
+              </div>
 
               <div className="p-4 bg-gray-50">
                 <h3 className="font-bold text-lg text-gray-900">
-                  {selectedMedia.name}
+                  {selectedImage.name}
                 </h3>
-                <p className="text-gray-600 text-sm">{selectedMedia.role}</p>
+                <p className="text-gray-600 text-sm">{selectedImage.role}</p>
                 <p className="text-gray-700 mt-2 italic">
-                  &quot;{selectedMedia.content}&quot;
+                  &quot;{selectedImage.content}&quot;
                 </p>
+
+                {selectedImage.rating && (
+                  <div className="flex items-center space-x-2 mt-3">
+                    <div className="flex space-x-1">
+                      {[...Array(selectedImage.rating)].map((_, i) => (
+                        <Star
+                          key={i}
+                          className="h-4 w-4 text-yellow-400"
+                          fill="currentColor"
+                        />
+                      ))}
+                    </div>
+                    <span className="text-xs text-gray-600">
+                      • {selectedImage.platform}
+                    </span>
+                  </div>
+                )}
               </div>
             </div>
           </div>

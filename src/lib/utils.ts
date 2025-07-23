@@ -38,13 +38,18 @@ export function formatWhatsAppNumber(phone: string): string {
 // Generate WhatsApp message (updated)
 export function generateWhatsAppMessage(data: {
   name: string;
-  email: string;
+  email?: string; // 🔄 CHANGED: Made optional
   whatsapp: string;
   course_interest: string;
   message?: string;
 }): string {
   let message = `Olá! Meu nome é ${data.name} e tenho interesse em fazer um curso na Cultura Inglesa Teresina.\n\n`;
-  message += `📧 Email: ${data.email}\n`;
+
+  // 🔄 CHANGED: Only include email if provided
+  if (data.email && data.email.trim()) {
+    message += `📧 Email: ${data.email}\n`;
+  }
+
   message += `📱 WhatsApp: ${data.whatsapp}\n`;
   message += `📚 Curso de interesse: ${data.course_interest}\n`;
 

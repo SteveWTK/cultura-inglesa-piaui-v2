@@ -1,34 +1,34 @@
 // src\lib\types.ts
-// Database Types
+// Database Types - Update Lead interface
 export interface Lead {
   id?: string;
   created_at?: string;
   name: string;
-  email: string;
+  email?: string; // 🔄 CHANGED: Made optional
   whatsapp: string;
   age_group?: string;
   course_interest?: string;
   message?: string;
-  email_consent: boolean;
+  email_consent?: boolean; // 🔄 CHANGED: Made optional
   whatsapp_consent: boolean;
   utm_source?: string;
   utm_medium?: string;
   utm_campaign?: string;
 }
 
-// Form Types
+// Form Types - Update ContactFormData interface
 export interface ContactFormData {
   name: string;
-  email: string;
+  email?: string; // 🔄 CHANGED: Made optional
   whatsapp: string;
-  age_group: string;
-  course_interest: string;
+  age_group?: string;
+  course_interest?: string;
   message?: string;
-  email_consent: boolean;
+  email_consent?: boolean; // 🔄 CHANGED: Made optional
   whatsapp_consent: boolean;
 }
 
-// Component Types
+// Rest of the file stays the same...
 export interface TestimonialData {
   id: string;
   name: string;
@@ -45,29 +45,25 @@ export interface BenefitData {
   icon: string;
 }
 
-// API Response Types
 export interface ApiResponse<T> {
   success: boolean;
   data?: T;
   error?: string;
 }
 
-// WhatsApp Message Types
 export interface WhatsAppMessageData {
   name: string;
-  email: string;
+  email?: string; // 🔄 CHANGED: Made optional
   whatsapp: string;
   course_interest: string;
   message?: string;
 }
 
-// Select option type for UI components
 export interface SelectOption {
   value: string;
   label: string;
 }
 
-// Age Groups for form select (fixed readonly issue)
 export const AGE_GROUPS: SelectOption[] = [
   { value: "", label: "Não especificado" },
   { value: "familia", label: "Para família (várias idades)" },
@@ -78,7 +74,6 @@ export const AGE_GROUPS: SelectOption[] = [
   { value: "adultos-18-plus", label: "Adultos (18+ anos)" },
 ];
 
-// Course Interest Options (fixed readonly issue)
 export const COURSE_INTERESTS: SelectOption[] = [
   { value: "", label: "Informações gerais" },
   { value: "ingles-geral", label: "Inglês Geral" },
