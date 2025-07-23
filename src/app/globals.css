@@ -245,6 +245,10 @@
     background: linear-gradient(to bottom right, #dc2626, #b91c1c, #991b1b);
   }
 
+  .bg-gradient-to-r.from-primary-800.to-primary-700 {
+    background: linear-gradient(to right, #991b1b, #b91c1c);
+  }
+
   /* Gradients */
   .bg-gradient-to-r.from-primary-600.to-primary-800 {
     background: linear-gradient(to right, #2563eb, #1e40af);

@@ -84,13 +84,13 @@ export const FormSection: React.FC = () => {
 
             {/* Image/Video Placeholder */}
             <div className="relative rounded-2xl overflow-hidden shadow-xl">
-              <div className="w-full h-64 bg-gradient-to-br from-primary-400 to-primary-600 flex items-center justify-center text-white">
+              <div className="w-full h-78 bg-gradient-to-br from-primary-400 to-primary-600 flex items-center justify-center text-white">
                 <div className="text-center">
                   <h3 className="text-xl font-bold mb-2">
                     Conheça Nossa Escola
                   </h3>
                   <img
-                    src="/images/school-front.png"
+                    src="/images/form-image-1.jpeg"
                     alt="Fachada da Cultura Inglesa"
                     className="rounded-2xl shadow-2xl w-fit py-1"
                   />

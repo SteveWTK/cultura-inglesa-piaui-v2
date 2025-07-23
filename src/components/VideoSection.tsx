@@ -7,7 +7,7 @@ import { SimpleVideoPlayer } from "./SimpleVideoPlayer";
 
 export const VideoSection: React.FC = () => {
   return (
-    <section className="py-20 bg-gradient-to-r from-gray-900 to-gray-800 text-white relative overflow-hidden">
+    <section className="py-20 bg-gradient-to-r from-red-900 to-red-800 text-white relative overflow-hidden">
       {/* Background pattern */}
       {/* <div className="absolute inset-0 bg-pattern opacity-5"></div> */}
 
