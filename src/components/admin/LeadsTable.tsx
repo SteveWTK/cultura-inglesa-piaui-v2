@@ -142,7 +142,7 @@ export const LeadsTable: React.FC<LeadsTableProps> = ({ leads, onRefresh }) => {
                     )}
                     {lead.email_consent && (
                       <button
-                        onClick={() => openEmail(lead.email)}
+                        onClick={() => openEmail(lead.email || "N/A")}
                         className="text-purple-600 hover:text-purple-900 p-1 rounded"
                         title="Enviar email"
                       >
@@ -294,7 +294,7 @@ export const LeadsTable: React.FC<LeadsTableProps> = ({ leads, onRefresh }) => {
                 )}
                 {selectedLead.email_consent && (
                   <Button
-                    onClick={() => openEmail(selectedLead.email)}
+                    onClick={() => openEmail(selectedLead.email || "N/A")}
                     variant="secondary"
                     className="flex-1"
                   >

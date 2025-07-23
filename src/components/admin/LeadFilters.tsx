@@ -48,17 +48,19 @@ export const LeadFilters: React.FC<LeadFiltersProps> = ({
     { value: "whatsapp", label: "Consent WhatsApp" },
     { value: "email", label: "Consent Email" },
     { value: "both", label: "Ambos consents" },
+    { value: "whatsapp_only", label: "Apenas WhatsApp" }, // New option for no email
   ];
 
   useEffect(() => {
     let filtered = [...leads];
 
-    // Search filter
+    // Search filter - 🔧 FIXED: Handle optional email
     if (searchTerm) {
       filtered = filtered.filter(
         (lead) =>
           lead.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          lead.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          (lead.email &&
+            lead.email.toLowerCase().includes(searchTerm.toLowerCase())) || // ✅ Check if email exists
           lead.whatsapp.includes(searchTerm)
       );
     }
@@ -98,18 +100,29 @@ export const LeadFilters: React.FC<LeadFiltersProps> = ({
       });
     }
 
-    // Consent filter
+    // Consent filter - 🔧 FIXED: Handle optional email consent
     if (consentFilter) {
       switch (consentFilter) {
         case "whatsapp":
           filtered = filtered.filter((lead) => lead.whatsapp_consent);
           break;
         case "email":
-          filtered = filtered.filter((lead) => lead.email_consent);
+          // ✅ Only filter for email consent if email exists
+          filtered = filtered.filter(
+            (lead) => lead.email && lead.email_consent
+          );
           break;
         case "both":
+          // ✅ Check both email exists AND both consents are true
           filtered = filtered.filter(
-            (lead) => lead.whatsapp_consent && lead.email_consent
+            (lead) => lead.whatsapp_consent && lead.email && lead.email_consent
+          );
+          break;
+        case "whatsapp_only":
+          // ✅ New filter: WhatsApp consent but no email provided
+          filtered = filtered.filter(
+            (lead) =>
+              lead.whatsapp_consent && (!lead.email || lead.email.trim() === "")
           );
           break;
       }
@@ -138,7 +151,7 @@ export const LeadFilters: React.FC<LeadFiltersProps> = ({
     searchTerm || courseFilter || ageGroupFilter || dateFilter || consentFilter;
 
   return (
-    <div className="bg-primary-200 rounded-xl shadow-sm border border-gray-200 p-6">
+    <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
       <div className="flex items-center justify-between mb-6">
         <div className="flex items-center space-x-2">
           <Filter className="h-5 w-5 text-gray-500" />
@@ -158,7 +171,6 @@ export const LeadFilters: React.FC<LeadFiltersProps> = ({
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
         <Input
           placeholder="Buscar por nome, email ou telefone..."
-          className="bg-white"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
