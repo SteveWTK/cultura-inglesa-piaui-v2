@@ -18,34 +18,34 @@ interface TestimonialItem {
 
 const testimonialData: TestimonialItem[] = [
   // Instagram video testimonials
-  {
-    id: "instagram-1",
-    type: "instagram",
-    name: "Maria Julia Passos",
-    role: "Aluna",
-    content:
-      "Foi uma experiência muito forte na minha vida que me impactou muito!",
-    src: "https://www.instagram.com/reel/DGddXlUO1Q1/?utm_source=ig_web_copy_link", // Replace with actual Instagram URL
-    color: "from-pink-400 to-rose-500",
-  },
-  {
-    id: "instagram-2",
-    type: "instagram",
-    name: "Taynan",
-    role: "Aluna",
-    content: "",
-    src: "https://www.instagram.com/reel/C-VUas0gX75/?igsh=b2t1czFjaGQweWNn", // Replace with actual Instagram URL
-    color: "from-orange-400 to-red-500",
-  },
-  {
-    id: "instagram-3",
-    type: "instagram",
-    name: "Emília, mãe da Letícia,",
-    role: "Mãe de aluna",
-    content: "",
-    src: "https://www.instagram.com/reel/C-Ats4dOjku/?utm_source=ig_web_copy_link", // Replace with actual Instagram URL
-    color: "from-purple-400 to-pink-500",
-  },
+  // {
+  //   id: "instagram-1",
+  //   type: "instagram",
+  //   name: "Maria Julia Passos",
+  //   role: "Aluna",
+  //   content:
+  //     "Foi uma experiência muito forte na minha vida que me impactou muito!",
+  //   src: "https://www.instagram.com/reel/DGddXlUO1Q1/?utm_source=ig_web_copy_link", // Replace with actual Instagram URL
+  //   color: "from-pink-400 to-rose-500",
+  // },
+  // {
+  //   id: "instagram-2",
+  //   type: "instagram",
+  //   name: "Taynan",
+  //   role: "Aluna",
+  //   content: "",
+  //   src: "https://www.instagram.com/reel/C-VUas0gX75/?igsh=b2t1czFjaGQweWNn", // Replace with actual Instagram URL
+  //   color: "from-orange-400 to-red-500",
+  // },
+  // {
+  //   id: "instagram-3",
+  //   type: "instagram",
+  //   name: "Emília, mãe da Letícia,",
+  //   role: "Mãe de aluna",
+  //   content: "",
+  //   src: "https://www.instagram.com/reel/C-Ats4dOjku/?utm_source=ig_web_copy_link", // Replace with actual Instagram URL
+  //   color: "from-purple-400 to-pink-500",
+  // },
 
   // Review screenshots (keep small images)
   {
@@ -295,7 +295,7 @@ export const Testimonials: React.FC = () => {
                 </div>
               )}
 
-              <div className="p-4 bg-gray-50">
+              {/* <div className="p-4 bg-gray-50">
                 <h3 className="font-bold text-lg text-gray-900">
                   {selectedMedia.name}
                 </h3>
@@ -303,7 +303,7 @@ export const Testimonials: React.FC = () => {
                 <p className="text-gray-700 mt-2 italic">
                   &quot;{selectedMedia.content}&quot;
                 </p>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
