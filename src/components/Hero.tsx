@@ -12,7 +12,7 @@ export const Hero: React.FC = () => {
   };
 
   return (
-    <section className="relative bg-gradient-to-br  from-[#fc0404] via-[#fe0002] to-[#fc0814] text-white overflow-hidden">
+    <section className="relative bg-gradient-to-r from-primary-800 to-primary-700 text-white overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 bg-[url('/images/pattern.svg')] opacity-10"></div>
 

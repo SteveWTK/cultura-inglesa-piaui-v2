@@ -240,7 +240,13 @@
     background-color: #991b1b;
   }
 
+  /* from-[#fc0404] via-[#fe0002] to-[#fc0814] */
+
   /* Red gradients */
+
+  .bg-gradient-to-br.from-herored-600.via-herored-700.to-herored-800 {
+    background: linear-gradient(to bottom right, #fc0404, #fe0002, #fc0814);
+  }
   .bg-gradient-to-br.from-primary-600.via-primary-700.to-primary-800 {
     background: linear-gradient(to bottom right, #dc2626, #b91c1c, #991b1b);
   }
