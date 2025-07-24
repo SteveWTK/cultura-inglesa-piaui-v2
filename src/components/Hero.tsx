@@ -41,7 +41,7 @@ export const Hero: React.FC = () => {
                 </li>
                 <li className="flex items-center space-x-3">
                   <Users className="h-6 w-6 text-accent-500 flex-shrink-0" />
-                  <span>Turmas para todas as idades (4 anos+)</span>
+                  <span>Turmas para todas as idades (3 anos+)</span>
                 </li>
                 <li className="flex items-center space-x-3">
                   <Globe className="h-6 w-6 text-accent-500 flex-shrink-0" />
