@@ -36,7 +36,7 @@ const testimonialData: TestimonialItem[] = [
     name: "Taynan",
     role: "aluna",
     content:
-      "A Cultura Inglesa preza mais pela conversação e prepara mais agente para o dia a dia!",
+      "A Cultura Inglesa preza mais pela conversação e prepara mais a gente para o dia a dia!",
     src: "https://www.instagram.com/reel/C-VUas0gX75/?igsh=b2t1czFjaGQweWNn",
     thumbnail: "/images/testimonials/testimonial-v2.png",
     color: "from-orange-400 to-red-500",
