@@ -134,7 +134,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <Input
             label="Nome completo"
-            placeholder="Seu nome completo"
+            placeholder=""
             required
             {...register("name")}
             error={errors.name?.message}
@@ -144,7 +144,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({
           <Input
             label="Email (opcional)"
             type="email"
-            placeholder="seu@email.com (opcional)"
+            placeholder=""
             {...register("email")}
             error={errors.email?.message}
           />
@@ -152,11 +152,16 @@ export const ContactForm: React.FC<ContactFormProps> = ({
 
         <Input
           label="WhatsApp"
-          placeholder="(86) 99999-9999"
+          placeholder=""
           required
           {...register("whatsapp")}
           error={errors.whatsapp?.message}
         />
+
+        <div className="text-xs text-gray-500 mt-1">
+          📱 Aceita números brasileiros e internacionais. Ex: (86) 99999-9999 ou
+          +44 7700 900123
+        </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <Select
