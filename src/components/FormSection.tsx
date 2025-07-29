@@ -25,19 +25,19 @@ export const FormSection: React.FC = () => {
   // School carousel images
   const schoolImages = [
     {
-      src: "/images/school-front-1.jpeg",
+      src: "/images/form/school-front-1.jpeg",
       alt: "Fachada da Cultura Inglesa Teresina",
       title: "Nossa Escola",
       description: "Localização de fácil acesso",
     },
     {
-      src: "/images/reception-1.jpg", // You'll need to add this image
+      src: "/images/form/reception-1.jpg", // You'll need to add this image
       alt: "Recepção da Cultura Inglesa",
       title: "Salas Modernas",
       description: "Ambiente preparado para o melhor aprendizado",
     },
     {
-      src: "/images/form-image-2.jpeg", // You'll need to add this image
+      src: "/images/form/form-image-2.jpeg", // You'll need to add this image
       alt: "Alunos da Cultura Inglesa Teresina",
       title: "Recursos Completos",
       description: "Alunos da Cultura Inglesa de Teresina",
