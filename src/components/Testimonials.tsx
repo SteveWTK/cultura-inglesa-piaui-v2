@@ -249,7 +249,7 @@ export const Testimonials: React.FC = () => {
                 Seja o próximo caso de sucesso!
               </h3>
               <p className="text-xl text-red-100 mb-8 max-w-2xl mx-auto">
-                Junte-se a centenas de alunos que já transformaram suas vidas
+                Junte-se a milhares de alunos que já transformaram suas vidas
                 com a Cultura Inglesa Teresina
               </p>
 

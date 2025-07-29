@@ -2,8 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import { Menu, X, Phone, MessageCircle } from "lucide-react";
-import { WhatsAppButton } from "./WhatsAppButton";
+import { Menu, X, Phone } from "lucide-react";
 import { Button } from "./ui/Button";
 
 interface HeaderProps {
@@ -113,12 +112,12 @@ export const Header: React.FC<HeaderProps> = ({ variant = "default" }) => {
                 Matricule-se
               </Button>
 
-              <WhatsAppButton
+              {/* <WhatsAppButton
                 phoneNumber={process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || ""}
                 variant="inline"
                 className="px-3 py-2 text-sm"
                 message="Olá! Vi o site da Cultura Inglesa Teresina e gostaria de mais informações sobre os cursos."
-              />
+              /> */}
             </div>
 
             {/* Mobile Menu Button */}
@@ -182,12 +181,12 @@ export const Header: React.FC<HeaderProps> = ({ variant = "default" }) => {
                     Garantir Minha Vaga
                   </Button>
 
-                  <WhatsAppButton
+                  {/* <WhatsAppButton
                     phoneNumber={process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || ""}
                     variant="inline"
                     className="w-full justify-center"
                     message="Olá! Vi o site da Cultura Inglesa Teresina e gostaria de mais informações sobre os cursos."
-                  />
+                  /> */}
 
                   <a
                     href={`tel:${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER}`}

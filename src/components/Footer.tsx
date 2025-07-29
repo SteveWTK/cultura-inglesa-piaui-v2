@@ -10,8 +10,10 @@ import {
   Facebook,
   Instagram,
   Youtube,
+  MessageCircle,
 } from "lucide-react";
-import { WhatsAppButton } from "./WhatsAppButton";
+// import { WhatsAppButton } from "./WhatsAppButton";
+import { Button } from "./ui/Button";
 
 export const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
@@ -100,13 +102,24 @@ export const Footer: React.FC = () => {
           <div className="space-y-6">
             <h3 className="text-xl font-bold">Fale Conosco</h3>
             <div className="space-y-4">
-              <WhatsAppButton
+              {/* <WhatsAppButton
                 phoneNumber={process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || ""}
                 variant="inline"
                 className="w-[75%] justify-center"
                 message="Olá! Gostaria de mais informações sobre os cursos da Cultura Inglesa Teresina."
-              />
-              <button
+              /> */}
+              <Button
+                onClick={() => {
+                  const formSection = document.getElementById("matriculas");
+                  formSection?.scrollIntoView({ behavior: "smooth" });
+                }}
+                variant="whatsapp"
+                className="shadow-lg hover:shadow-xl transition-all duration-200"
+              >
+                <MessageCircle size={20} className="mr-2" />
+                Falar no WhatsApp
+              </Button>
+              {/* <button
                 onClick={() => {
                   const formSection = document.getElementById("matriculas");
                   formSection?.scrollIntoView({ behavior: "smooth" });
@@ -114,7 +127,7 @@ export const Footer: React.FC = () => {
                 className="w-[75%] bg-primary-600 hover:bg-primary-700 text-white px-4 py-3 rounded-lg font-semibold transition-colors duration-200"
               >
                 Preencher Formulário
-              </button>
+              </button> */}
             </div>
 
             {/* <div className="pt-4 border-t border-gray-700">

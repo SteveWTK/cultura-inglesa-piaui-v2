@@ -52,8 +52,8 @@ export const VideoSection: React.FC = () => {
             {/* Option A: Self-hosted MP4 video */}
             <SimpleVideoPlayer
               src="/videos/cultura-inglesa-intro.mp4"
-              poster="/images/video-thumbnail-3.jpeg"
-              title="Metodologia Cultura Inglesa"
+              poster="/images/video-thumbnail-um-dia-na-ci.png"
+              title="Um dia na Cultura Inglesa"
               className="w-full h-80 lg:h-96"
               type="mp4"
             />

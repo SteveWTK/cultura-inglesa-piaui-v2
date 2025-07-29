@@ -9,7 +9,7 @@ import {
   BookOpen,
 } from "lucide-react";
 import { Button } from "./ui/Button";
-import { WhatsAppButton } from "./WhatsAppButton";
+// import { WhatsAppButton } from "./WhatsAppButton";
 
 interface FAQItem {
   id: string;
@@ -32,7 +32,7 @@ const faqData: FAQItem[] = [
     id: "2",
     question: "A partir de qual idade posso matricular meu filho?",
     answer:
-      "Nosso curso de inglês para crianças começa a partir dos 4 anos, com atividades lúdicas e envolventes que despertam o interesse e criam uma relação afetuosa com o idioma, incentivando o aprendizado contínuo ao longo dos anos.",
+      "Nosso curso de inglês para crianças começa a partir dos 3 anos, com atividades lúdicas e envolventes que despertam o interesse e criam uma relação afetuosa com o idioma, incentivando o aprendizado contínuo ao longo dos anos.",
     icon: Users,
     color: "from-green-400 to-green-600",
   },
@@ -189,14 +189,14 @@ export const FAQ: React.FC = () => {
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                <WhatsAppButton
+                {/* <WhatsAppButton
                   phoneNumber={process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || ""}
                   variant="inline"
                   className="bg-green-500 hover:bg-green-600 border-0 text-white shadow-lg hover:shadow-xl transition-all duration-200"
                   message="Olá! Tenho algumas dúvidas sobre os cursos da Cultura Inglesa Teresina. Podem me ajudar?"
                 />
 
-                <span className="text-blue-200 text-sm">ou</span>
+                <span className="text-blue-200 text-sm">ou</span> */}
 
                 <Button
                   onClick={() => {
@@ -204,9 +204,10 @@ export const FAQ: React.FC = () => {
                     formSection?.scrollIntoView({ behavior: "smooth" });
                   }}
                   variant="secondary"
-                  className="bg-white text-primary-700 hover:bg-gray-50 shadow-lg hover:shadow-xl transition-all duration-200"
+                  className="bg-white hover:bg-red-50 text-primary-700 shadow-lg hover:shadow-xl transition-all duration-200"
                 >
-                  Preencher Formulário
+                  <MessageCircle size={20} className="mr-2" />
+                  Falar no WhatsApp
                 </Button>
               </div>
             </div>

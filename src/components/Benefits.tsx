@@ -50,7 +50,7 @@ export const Benefits: React.FC = () => {
             <span className="text-primary-600">Cultura Inglesa?</span>
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Mais de 75 anos formando pessoas que transformam o mundo através do
+            Mais de 90 anos formando pessoas que transformam o mundo através do
             inglês. Descubra os diferenciais que fazem da Cultura Inglesa a
             escola de idiomas mais respeitada do Brasil.
           </p>

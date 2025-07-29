@@ -1,15 +1,39 @@
+// src\components\Hero.tsx
+
 "use client";
 
 import React from "react";
 import { Button } from "./ui/Button";
 import { WhatsAppButton } from "./WhatsAppButton";
 import { Award, Users, Globe } from "lucide-react";
+import { ImageCarousel } from "./ui/ImageCarousel";
 
 export const Hero: React.FC = () => {
   const scrollToForm = () => {
     const formSection = document.getElementById("matriculas");
     formSection?.scrollIntoView({ behavior: "smooth" });
   };
+
+  const heroImages = [
+    {
+      src: "/images/hero/hero-new.jpeg",
+      alt: "Aulas Dinâmicas para crianças",
+      title: "Aulas Dinâmicas para crianças",
+      description: "Metodologia interativa que engaja todos os alunos",
+    },
+    {
+      src: "/images/hero/hero-3.jpeg", // You'll need to add this image
+      alt: "Adolescentes",
+      title: "",
+      description: "",
+    },
+    {
+      src: "/images/hero/hero-3.png", // You'll need to add this image
+      alt: "Instalações modernas da Cultura Inglesa Teresina",
+      title: "",
+      description: "",
+    },
+  ];
 
   return (
     <section className="relative bg-gradient-to-r from-primary-800 to-primary-700 text-white overflow-hidden">
@@ -23,8 +47,8 @@ export const Hero: React.FC = () => {
             {/* Logo/Brand */}
             <div className="space-y-4">
               <h1 className="text-5xl lg:text-6xl font-bold leading-tight">
-                Matrículas
-                <span className="block text-white">2025</span>
+                Matrículas Abertas
+                <span className="block text-white">2025.2</span>
               </h1>
             </div>
 
@@ -60,13 +84,21 @@ export const Hero: React.FC = () => {
               >
                 Garantir Minha Vaga
               </Button>
+              {/* <Button
+                variant="secondary"
+                size="lg"
+                onClick={scrollToForm}
+                className="bg-green-500 hover:bg-green-600 text-white border-0"
+              >
+                Entre em Contato
+              </Button> */}
 
-              <WhatsAppButton
+              {/* <WhatsAppButton
                 phoneNumber={process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || ""}
                 variant="inline"
                 className="border-1"
                 message="Olá! Gostaria de saber mais sobre as matrículas 2025 da Cultura Inglesa Teresina."
-              />
+              /> */}
             </div>
 
             <div className="pt-6 border-t border-blue-400">
@@ -77,29 +109,23 @@ export const Hero: React.FC = () => {
             </div>
           </div>
 
-          {/* Right Column - Image/Visual */}
+          {/* Right Column - Image Carousel */}
           <div className="relative">
             <div className="relative z-10">
-              {/* <div className="w-full h-80 lg:h-96 bg-gradient-to-br from-primary-400 to-primary-600 rounded-2xl flex items-center justify-center text-white">
-                <div className="text-center">
-                  <h3 className="text-2xl font-bold mb-2">
-                    Estudantes Cultura Inglesa
-                  </h3>
-                  <p className="text-primary-100">
-                    Imagem será adicionada aqui
-                  </p>
-                </div>
-              </div> */}
-              <img
-                src="/images/hero-new.jpeg"
-                alt="Estudantes da Cultura Inglesa"
-                className="rounded-2xl shadow-2xl w-full"
+              <ImageCarousel
+                images={heroImages}
+                className="w-full"
+                imageClassName="h-80 lg:h-140"
+                autoPlay={true}
+                autoPlayInterval={5000}
+                showDots={true}
+                showArrows={true}
               />
             </div>
 
             {/* Floating cards */}
             <div className="absolute -top-4 -left-4 bg-white text-red-800 p-4 rounded-xl shadow-lg z-20">
-              <div className="text-2xl font-bold">75+</div>
+              <div className="text-2xl font-bold">90+</div>
               <div className="text-sm">Anos de tradição</div>
             </div>
 
