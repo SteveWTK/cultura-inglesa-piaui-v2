@@ -18,8 +18,8 @@ export const Hero: React.FC = () => {
     {
       src: "/images/hero/hero-new.jpeg",
       alt: "Aulas Dinâmicas para crianças",
-      title: "Aulas Dinâmicas para crianças",
-      description: "Metodologia interativa que engaja todos os alunos",
+      title: "",
+      description: "",
     },
     {
       src: "/images/hero/hero-3.jpeg", // You'll need to add this image

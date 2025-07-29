@@ -46,18 +46,18 @@ export function generateWhatsAppMessage(data: {
   let message = `Olá! Meu nome é ${data.name} e tenho interesse em fazer um curso na Cultura Inglesa Teresina.\n\n`;
 
   // 🔄 CHANGED: Only include email if provided
-  if (data.email && data.email.trim()) {
-    message += `📧 Email: ${data.email}\n`;
-  }
+  // if (data.email && data.email.trim()) {
+  //   message += `📧 Email: ${data.email}\n`;
+  // }
 
-  message += `📱 WhatsApp: ${data.whatsapp}\n`;
-  message += `📚 Curso de interesse: ${data.course_interest}\n`;
+  // message += `📱 WhatsApp: ${data.whatsapp}\n`;
+  // message += `📚 Curso de interesse: ${data.course_interest}\n`;
 
-  if (data.message) {
-    message += `\n💬 Mensagem adicional: ${data.message}\n`;
-  }
+  // if (data.message) {
+  //   message += `\n💬 Mensagem adicional: ${data.message}\n`;
+  // }
 
-  message += `\nGostaria de receber mais informações sobre matrículas e horários disponíveis. Obrigado!`;
+  message += `\n Gostaria de receber mais informações sobre matrículas e horários disponíveis. Obrigado!`;
 
   return encodeURIComponent(message);
 }
