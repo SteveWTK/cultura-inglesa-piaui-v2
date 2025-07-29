@@ -28,7 +28,7 @@ export const Hero: React.FC = () => {
       description: "",
     },
     {
-      src: "/images/hero/hero-3.png", // You'll need to add this image
+      src: "/images/hero/hero-4.jpeg", // You'll need to add this image
       alt: "Instalações modernas da Cultura Inglesa Teresina",
       title: "",
       description: "",
