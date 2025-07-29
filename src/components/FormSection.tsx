@@ -31,7 +31,7 @@ export const FormSection: React.FC = () => {
       description: "Localização de fácil acesso",
     },
     {
-      src: "/images/school-2.jpg", // You'll need to add this image
+      src: "/images/reception-1.jpg", // You'll need to add this image
       alt: "Recepção da Cultura Inglesa",
       title: "Salas Modernas",
       description: "Ambiente preparado para o melhor aprendizado",
