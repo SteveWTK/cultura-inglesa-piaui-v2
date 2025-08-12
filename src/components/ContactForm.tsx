@@ -1,8 +1,8 @@
-// src/components/ContactForm.tsx
+// src/components/ContactForm.tsx - Enhanced with UTM tracking
 
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -12,9 +12,14 @@ import { Select } from "./ui/Select";
 import { Button } from "./ui/Button";
 import { contactFormSchema, type ContactFormInput } from "@/lib/validations";
 import { AGE_GROUPS, COURSE_INTERESTS } from "@/lib/types";
-import { generateWhatsAppMessage, getUTMParameters } from "@/lib/utils";
+import {
+  generateWhatsAppMessage,
+  getStoredUTMParameters,
+  storeUTMParameters,
+  type UTMParameters,
+} from "@/lib/utils";
 import { trackFormSubmit } from "@/lib/analytics";
-import { MessageCircle } from "lucide-react";
+import { MessageCircle, Eye, EyeOff } from "lucide-react";
 
 interface ContactFormProps {
   showMessageField?: boolean;
@@ -24,6 +29,8 @@ export const ContactForm: React.FC<ContactFormProps> = ({
   showMessageField = true,
 }) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [utmParams, setUtmParams] = useState<UTMParameters>({});
+  const [showUTMDebug, setShowUTMDebug] = useState(false); // For debugging
   const router = useRouter();
 
   const {
@@ -46,16 +53,26 @@ export const ContactForm: React.FC<ContactFormProps> = ({
 
   const watchedData = watch();
 
+  // 🆕 CAPTURE UTM PARAMETERS ON COMPONENT MOUNT
+  useEffect(() => {
+    // Store UTM parameters from current URL
+    storeUTMParameters();
+
+    // Get UTM parameters (from current URL or stored)
+    const capturedUTM = getStoredUTMParameters();
+    setUtmParams(capturedUTM);
+
+    console.log("📋 Form loaded with UTM parameters:", capturedUTM);
+  }, []);
+
   const onSubmit = async (data: ContactFormInput) => {
     setIsSubmitting(true);
 
     try {
-      console.log("Submitting form data:", data);
+      console.log("📝 Submitting form data:", data);
+      console.log("🎯 With UTM parameters:", utmParams);
 
-      // Get UTM parameters
-      const utmParams = getUTMParameters();
-
-      // Submit to API
+      // Submit to API with UTM parameters
       const response = await fetch("/api/leads", {
         method: "POST",
         headers: {
@@ -63,12 +80,12 @@ export const ContactForm: React.FC<ContactFormProps> = ({
         },
         body: JSON.stringify({
           ...data,
-          utmParams,
+          utmParams, // 🆕 Enhanced UTM parameters
         }),
       });
 
       const result = await response.json();
-      console.log("API response:", result);
+      console.log("✅ API response:", result);
 
       if (!result.success) {
         throw new Error(result.error || "Erro ao enviar formulário");
@@ -102,7 +119,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({
         router.push(`/obrigado?message=${whatsappMessage}`);
       }, 1000);
     } catch (error) {
-      console.error("Form submission error:", error);
+      console.error("❌ Form submission error:", error);
       toast.error(
         `❌ ${
           error instanceof Error
@@ -127,7 +144,62 @@ export const ContactForm: React.FC<ContactFormProps> = ({
         </p>
       </div>
 
+      {/* 🆕 UTM DEBUG INFO (DEVELOPMENT ONLY) */}
+      {process.env.NODE_ENV === "development" && (
+        <div className="mb-6 bg-blue-50 border border-blue-200 rounded-lg p-4">
+          <button
+            type="button"
+            onClick={() => setShowUTMDebug(!showUTMDebug)}
+            className="flex items-center space-x-2 text-blue-700 text-sm font-medium"
+          >
+            {showUTMDebug ? (
+              <EyeOff className="h-4 w-4" />
+            ) : (
+              <Eye className="h-4 w-4" />
+            )}
+            <span>UTM Debug Info</span>
+          </button>
+
+          {showUTMDebug && (
+            <div className="mt-3 text-xs">
+              <pre className="bg-blue-100 p-2 rounded text-blue-800 overflow-x-auto">
+                {JSON.stringify(utmParams, null, 2)}
+              </pre>
+            </div>
+          )}
+        </div>
+      )}
+
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+        {/* 🆕 HIDDEN UTM FIELDS */}
+        <div className="hidden">
+          <input
+            type="hidden"
+            value={utmParams.utm_source || ""}
+            name="utm_source"
+          />
+          <input
+            type="hidden"
+            value={utmParams.utm_medium || ""}
+            name="utm_medium"
+          />
+          <input
+            type="hidden"
+            value={utmParams.utm_campaign || ""}
+            name="utm_campaign"
+          />
+          <input
+            type="hidden"
+            value={utmParams.utm_content || ""}
+            name="utm_content"
+          />
+          <input
+            type="hidden"
+            value={utmParams.url_referrer || ""}
+            name="url_referrer"
+          />
+        </div>
+
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <Input
             label="Nome completo"
@@ -256,26 +328,40 @@ export const ContactForm: React.FC<ContactFormProps> = ({
         Seus dados estão protegidos de acordo com a LGPD. Utilizamos apenas para
         entrar em contato sobre nossos cursos.
       </div>
+
+      {/* 🆕 UTM STATUS INDICATOR (VISIBLE ONLY IF UTM DETECTED) */}
+      {Object.keys(utmParams).length > 0 && (
+        <div className="mt-4 text-center">
+          <div className="inline-flex items-center space-x-2 text-xs text-green-600 bg-green-50 px-3 py-1 rounded-full">
+            <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+            <span>
+              Campanha detectada:{" "}
+              {utmParams.utm_campaign ||
+                utmParams.utm_source ||
+                "Rastreamento ativo"}
+            </span>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
-
-// // src/components/ContactForm.tsx
 
 // "use client";
 
 // import React, { useState } from "react";
 // import { useForm } from "react-hook-form";
+// import { useRouter } from "next/navigation";
 // import { zodResolver } from "@hookform/resolvers/zod";
 // import toast from "react-hot-toast";
 // import { Input } from "./ui/Input";
 // import { Select } from "./ui/Select";
 // import { Button } from "./ui/Button";
-// import { WhatsAppButton } from "./WhatsAppButton";
 // import { contactFormSchema, type ContactFormInput } from "@/lib/validations";
 // import { AGE_GROUPS, COURSE_INTERESTS } from "@/lib/types";
 // import { generateWhatsAppMessage, getUTMParameters } from "@/lib/utils";
 // import { trackFormSubmit } from "@/lib/analytics";
+// import { MessageCircle } from "lucide-react";
 
 // interface ContactFormProps {
 //   showMessageField?: boolean;
@@ -285,6 +371,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({
 //   showMessageField = true,
 // }) => {
 //   const [isSubmitting, setIsSubmitting] = useState(false);
+//   const router = useRouter();
 
 //   const {
 //     register,
@@ -298,7 +385,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({
 //       age_group: "",
 //       course_interest: "",
 //       message: "",
-//       email: "", // 🔄 CHANGED: Default empty string
+//       email: "",
 //       email_consent: false,
 //       whatsapp_consent: false,
 //     },
@@ -336,9 +423,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({
 
 //       trackFormSubmit("contact_form");
 
-//       toast.success(
-//         "✅ Informações enviadas com sucesso! Redirecionando para WhatsApp..."
-//       );
+//       toast.success("✅ Informações enviadas com sucesso! Redirecionando...");
 
 //       // Generate WhatsApp message
 //       const ageGroupLabel =
@@ -350,22 +435,19 @@ export const ContactForm: React.FC<ContactFormProps> = ({
 
 //       const whatsappMessage = generateWhatsAppMessage({
 //         name: data.name,
-//         email: data.email || "", // 🔄 CHANGED: Handle optional email
+//         email: data.email || "",
 //         whatsapp: data.whatsapp,
 //         course_interest: courseLabel,
 //         message: data.message,
 //       });
 
-//       const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER;
-//       if (whatsappNumber) {
-//         const whatsappURL = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
-
-//         setTimeout(() => {
-//           window.open(whatsappURL, "_blank");
-//         }, 1500);
-//       }
-
+//       // Reset form
 //       reset();
+
+//       // Redirect to thank you page with the message
+//       setTimeout(() => {
+//         router.push(`/obrigado?message=${whatsappMessage}`);
+//       }, 1000);
 //     } catch (error) {
 //       console.error("Form submission error:", error);
 //       toast.error(
@@ -387,8 +469,8 @@ export const ContactForm: React.FC<ContactFormProps> = ({
 //           Matrículas Abertas 2025
 //         </h2>
 //         <p className="text-lg text-gray-600">
-//           Preencha o formulário e fale conosco no WhatsApp para garantir sua
-//           vaga!
+//           Preencha o formulário para garantir sua vaga e receber mais
+//           informações pelo WhatsApp!
 //         </p>
 //       </div>
 
@@ -402,7 +484,6 @@ export const ContactForm: React.FC<ContactFormProps> = ({
 //             error={errors.name?.message}
 //           />
 
-//           {/* 🔄 CHANGED: Email is now optional */}
 //           <Input
 //             label="Email (opcional)"
 //             type="email"
@@ -467,7 +548,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({
 //         )}
 
 //         <div className="space-y-4">
-//           {/* 🔄 CHANGED: Email consent is now conditional */}
+//           {/* Email consent checkbox - only show if email is provided */}
 //           {watchedData.email && (
 //             <div className="flex items-start space-x-3">
 //               <input
@@ -483,6 +564,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({
 //             </div>
 //           )}
 
+//           {/* WhatsApp consent checkbox - required */}
 //           <div className="flex items-start space-x-3">
 //             <input
 //               type="checkbox"
@@ -502,29 +584,18 @@ export const ContactForm: React.FC<ContactFormProps> = ({
 //           )}
 //         </div>
 
+//         {/* Single submit button */}
 //         <div className="space-y-4">
 //           <Button
 //             type="submit"
-//             variant="primary"
+//             variant="whatsapp"
 //             size="lg"
 //             className="w-full"
 //             isLoading={isSubmitting}
 //           >
+//             <MessageCircle size={20} className="mr-2" />
 //             {isSubmitting ? "Enviando..." : "Enviar e Falar no WhatsApp"}
 //           </Button>
-
-//           <div className="text-center text-gray-600 text-sm">ou</div>
-
-//           <WhatsAppButton
-//             phoneNumber={process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || ""}
-//             variant="inline"
-//             className="w-full"
-//             message={
-//               watchedData.name
-//                 ? `Olá! Meu nome é ${watchedData.name} e gostaria de saber mais sobre os cursos da Cultura Inglesa Teresina.`
-//                 : "Olá! Gostaria de saber mais sobre os cursos da Cultura Inglesa Teresina."
-//             }
-//           />
 //         </div>
 //       </form>
 

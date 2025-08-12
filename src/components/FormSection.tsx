@@ -78,39 +78,6 @@ export const FormSection: React.FC = () => {
               />
             </div>
 
-            {/* Benefits List */}
-            {/* <div className="bg-primary-50 rounded-2xl p-6">
-              <h3 className="text-xl font-bold text-gray-900 mb-4">
-                Por que escolher a Cultura Inglesa?
-              </h3>
-              <div className="space-y-3">
-                <div className="flex items-center space-x-3">
-                  <CheckCircle className="h-5 w-5 text-primary-600 flex-shrink-0" />
-                  <span className="text-gray-700">
-                    75+ anos de tradição no ensino de inglês
-                  </span>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <CheckCircle className="h-5 w-5 text-primary-600 flex-shrink-0" />
-                  <span className="text-gray-700">
-                    Professores certificados e experientes
-                  </span>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <CheckCircle className="h-5 w-5 text-primary-600 flex-shrink-0" />
-                  <span className="text-gray-700">
-                    Certificação Cambridge reconhecida mundialmente
-                  </span>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <CheckCircle className="h-5 w-5 text-primary-600 flex-shrink-0" />
-                  <span className="text-gray-700">
-                    Turmas para todas as idades (3 anos+)
-                  </span>
-                </div>
-              </div>
-            </div> */}
-
             {/* Call to Action */}
             <div className="bg-gradient-to-br from-primary-600 via-primary-700 to-primary-800 text-white rounded-2xl p-6">
               <div className="flex items-center space-x-3 mb-3">

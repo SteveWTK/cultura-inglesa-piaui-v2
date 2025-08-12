@@ -1,3 +1,4 @@
+// src\components\Benefits.tsx
 import React from "react";
 import { Sparkles, Users, Award, MessageCircle } from "lucide-react";
 
