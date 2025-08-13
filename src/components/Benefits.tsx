@@ -90,7 +90,7 @@ export const Benefits: React.FC = () => {
           <div className="inline-flex items-center space-x-8 bg-white rounded-2xl px-8 py-6 shadow-lg border border-gray-200">
             <div className="text-center">
               <div className="text-3xl font-bold bg-gradient-to-r from-violet-500 to-violet-700 bg-clip-text text-transparent">
-                75+
+                90+
               </div>
               <div className="text-sm text-gray-600">Anos de experiência</div>
             </div>
