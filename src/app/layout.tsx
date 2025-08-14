@@ -1,4 +1,5 @@
-// src\app\layout.tsx
+// src/app/layout.tsx - Fixed noscript GTM URL
+
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Script from "next/script";
@@ -141,46 +142,25 @@ export default function RootLayout({
                   j=d.createElement(s),
                   dl=l!='dataLayer'?'&l='+l:'';
                 j.async=true;
-                j.src='https://sst.culturainglesapiaui.com.br/gtm.js?id='+i+dl;
+                j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
                 f.parentNode.insertBefore(j,f);
               })(window,document,'script','dataLayer','GTM-T7ZCZNZH');
             `,
           }}
         />
         {/* End Google Tag Manager */}
-        {/* {process.env.NODE_ENV === "production" && (
-          <Script id="gtm-head" strategy="afterInteractive">
-            {`
-              (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-              new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-              j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-              'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-              })(window,document,'script','dataLayer','GTM-T7ZCZNZH');
-            `}
-          </Script>
-        )} */}
       </head>
       <body className={inter.className}>
-        {/* Google Tag Manager (noscript) */}
+        {/* Google Tag Manager (noscript) - FIXED URL */}
         <noscript>
           <iframe
-            src="https://sst.culturainglesapiaui.com.br/ns.html?id=GTM-T7ZCZNZH"
+            src="https://www.googletagmanager.com/ns.html?id=GTM-T7ZCZNZH"
             height="0"
             width="0"
             style={{ display: "none", visibility: "hidden" }}
           ></iframe>
         </noscript>
         {/* End Google Tag Manager (noscript) */}
-        {/* {process.env.NODE_ENV === "production" && (
-          <noscript>
-            <iframe
-              src="https://www.googletagmanager.com/ns.html?id=GTM-T7ZCZNZH"
-              height="0"
-              width="0"
-              style={{ display: "none", visibility: "hidden" }}
-            ></iframe>
-          </noscript>
-        )} */}
 
         <Header variant="landing" />
         {children}
@@ -225,12 +205,13 @@ export default function RootLayout({
   );
 }
 
+// src\app\layout.tsx
 // import type { Metadata } from "next";
 // import { Inter } from "next/font/google";
 // import Script from "next/script";
 // import { Toaster } from "react-hot-toast";
 // import { WhatsAppButton } from "@/components/WhatsAppButton";
-// import { Header } from "@/components/Header"; // Add this import
+// import { Header } from "@/components/Header";
 // import "./globals.css";
 
 // const inter = Inter({ subsets: ["latin"] });
@@ -283,8 +264,6 @@ export default function RootLayout({
 //     google: "your-google-verification-code",
 //   },
 // };
-
-// <meta name="apple-mobile-web-app-title" content="Cultura Inglesa" />;
 
 // export default function RootLayout({
 //   children,
@@ -357,8 +336,59 @@ export default function RootLayout({
 //             }),
 //           }}
 //         />
+
+//         {/* Google Tag Manager */}
+//         <script
+//           dangerouslySetInnerHTML={{
+//             __html: `
+//               (function(w,d,s,l,i){
+//                 w[l]=w[l]||[];
+//                 w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});
+//                 var f=d.getElementsByTagName(s)[0],
+//                   j=d.createElement(s),
+//                   dl=l!='dataLayer'?'&l='+l:'';
+//                 j.async=true;
+//                 j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
+//                 f.parentNode.insertBefore(j,f);
+//               })(window,document,'script','dataLayer','GTM-T7ZCZNZH');
+//             `,
+//           }}
+//         />
+//         {/* End Google Tag Manager */}
+//         {/* {process.env.NODE_ENV === "production" && (
+//           <Script id="gtm-head" strategy="afterInteractive">
+//             {`
+//               (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+//               new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+//               j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+//               'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+//               })(window,document,'script','dataLayer','GTM-T7ZCZNZH');
+//             `}
+//           </Script>
+//         )} */}
 //       </head>
 //       <body className={inter.className}>
+//         {/* Google Tag Manager (noscript) */}
+//         <noscript>
+//           <iframe
+//             src="https://sst.culturainglesapiaui.com.br/ns.html?id=GTM-T7ZCZNZH"
+//             height="0"
+//             width="0"
+//             style={{ display: "none", visibility: "hidden" }}
+//           ></iframe>
+//         </noscript>
+//         {/* End Google Tag Manager (noscript) */}
+//         {/* {process.env.NODE_ENV === "production" && (
+//           <noscript>
+//             <iframe
+//               src="https://www.googletagmanager.com/ns.html?id=GTM-T7ZCZNZH"
+//               height="0"
+//               width="0"
+//               style={{ display: "none", visibility: "hidden" }}
+//             ></iframe>
+//           </noscript>
+//         )} */}
+
 //         <Header variant="landing" />
 //         {children}
 
