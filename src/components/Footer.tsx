@@ -30,7 +30,7 @@ export const Footer: React.FC = () => {
               className="h-16 w-auto"
             />
             <p className="text-gray-300 leading-relaxed pr-8">
-              Há mais de 75 anos formando pessoas no Brasil inteiro que
+              Há mais de 90 anos formando pessoas no Brasil inteiro que
               transformam o mundo através do inglês. E há 18 anos impactando a
               vida de pessoas através do inglês em Teresina.
             </p>
